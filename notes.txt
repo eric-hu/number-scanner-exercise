@@ -1,0 +1,60 @@
+User story 1
+
+- simple parsing
+- digit parsing repeated 9 times
+- one input set is 4 strings, 3 characters wide
+  - can be reduced to 3 strings
+    - if we assume terminator line will not be erroneous
+- string for input
+  - will be read from a file
+  - convert to array of strings
+    - easy to split, O(N)
+    - much easier to do grouped removal of digits
+- string or number for output?
+  - number seems like the obvious choice, but digit loss seems like it might be
+  problematic
+    - i.e. will have to add code to make 123 convert to 000000123
+    - can make number output an array of single digits
+    - unsure if JS representing numbers as floats would be an issue
+  - array of single digit numbers ideal
+    - array strings ok too, but maybe more work
+    - user story 3 will require a "?" or null/undefined
+      - 1 + undefined = undefined + 1 = NaN
+      - null + 1 = 1 + null = 1
+      - use 'undefined' for "?" in problem 3
+
+
+User story 2
+- validate(num)
+  - if story 1 uses string output, convert to number
+  - run formula over output of Story 1
+  - return valid or invalid
+
+
+User story 3
+- question mark (?) is a new output type for parser
+- illegible is a new output type for validate(num)
+  - change validate(num) return type to enum
+
+
+User story 4
+- For correction, checksum degree-of-error may now matter
+- For digit checking, the number of possible digits are 0-9
+  - I can perform a levenshtein distance calculation between digit D
+  and input
+  - With arrayOfDistances, I can find the minimum one, and this is a likely
+  candidate for correction
+    - actually, only consider candidates with a distance of 1 (per rule)
+
+
+Coding notes
+- would normally start this as a git repo and iterate on a single parser file
+- doing this as separate files with much more duplication since user stories
+will be easier to discuss in isolation
+- Finished first 2 hour block on use case 1
+  - last problem I was stuck on: readNextChar
+    - how should it represent a next character?
+      - 1D array of strings
+      - 2D array of "chars"
+        - this might be easier for user story 4 comparisons
+        - can refactor into this later

@@ -31,11 +31,15 @@ infallible. Sometimes it goes wrong in its scanning. The next step therefore is
 to validate that the numbers you read are in fact valid account numbers. A
 valid account number has a valid checksum. This can be calculated as follows:
 
+```
 account number:  3  4  5  8  8  2  8  6  5
 position names:  d9 d8 d7 d6 d5 d4 d3 d2 d1
-
+```
 checksum calculation:
+
+```
 (d1+2*d2+3*d3 +..+9*d9) mod 11 = 0
+```
 So now you should also write some code that calculates the checksum for a given
 number, and identifies if it is a valid account number.
 
@@ -44,9 +48,11 @@ number, and identifies if it is a valid account number.
 Your boss is keen to see your results. He asks you to write out a file of your
 findings, one for each input file, in this format:
 
+```
 457508000
 664371495 ERR
 86110??36 ILL
+```
 ie the file has one account number per row. If some characters are illegible,
 they are replaced by a ?. In the case of a wrong checksum, or illegible
 number, this is noted in a second column indicating status.
@@ -76,11 +82,16 @@ I recommend finding a way to write out 3x3 cells on 3 lines in your code, so
 they form an identifiable digits. Even if your code actually doesn't represent
 them like that internally. I'd much rather read
 
+```
 "   " +
 "|_|" +
 "  |"
+```
 than
+
+```
 "   |_|  |" 
+```
 anyday.
 When Christophe and Emmanuel presented this Kata at XP2005 they worked on a
 solution that made extensive use of recursion rather than iteration. Many

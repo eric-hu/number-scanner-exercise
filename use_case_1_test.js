@@ -38,3 +38,10 @@ describe('parser', function() {
     assert.deepEqual(Scanner.parser(str), [1,2,3,4,5,6,7,8,9]);
   });
 });
+
+describe.only('parseFile', function() {
+  it("parses a file with two lines", function() {
+    assert.deepEqual(Scanner.parseFile('two_line_example.txt'),
+                     [[0,0,0,0,0,0,0,0,0], [1,2,3,4,5,6,7,8,9]]);
+  });
+});

@@ -19,6 +19,7 @@
 // into actual account numbers.
 
 var constants = require('./constants');
+const fs = require('fs');
 
 var Scanner = {
   readNextChar : function(input){
@@ -73,6 +74,27 @@ var Scanner = {
     } else {
       return [parsed]
     };
+  },
+
+  parseFile: function(filename){
+    var lineCounter = 0,
+        currentStream = [],
+        results = [],
+        input = fs.readFileSync(filename, 'utf8');
+
+    input = input.split("\n")
+
+    input.forEach(function(line) {
+      lineCounter++;
+      if (lineCounter % 4 === 0) {
+        results.push(Scanner.parser(currentStream));
+        currentStream = [];
+      }
+      else {
+        currentStream.push(line);
+      }
+    });
+    return results;
   }
 };
 

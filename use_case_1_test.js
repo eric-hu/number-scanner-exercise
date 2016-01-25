@@ -44,4 +44,10 @@ describe.only('parseFile', function() {
     assert.deepEqual(Scanner.parseFile('two_line_example.txt'),
                      [[0,0,0,0,0,0,0,0,0], [1,2,3,4,5,6,7,8,9]]);
   });
+
+  it("reads a file with 500 entries, the expected norm", function() {
+    res = Scanner.parseFile('five_hundred_line_example.txt');
+    assert.deepEqual(res[0], [0,0,0,0,0,0,0,0,0]);
+    assert.deepEqual(res[499], [0,0,0,0,0,0,0,0,0]);
+  });
 });

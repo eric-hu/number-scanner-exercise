@@ -95,6 +95,14 @@ var Scanner = {
       }
     });
     return results;
+  },
+
+  isValid: function(accountNumber) {
+    var checksum = accountNumber.reduceRight(function(accum, elm, index) {
+      return accum += elm * (9-index)
+    });
+
+    return checksum % 11 === 0;
   }
 };
 

@@ -1,7 +1,6 @@
 var assert = require('assert');
 
-var fs = require('fs');
-var Scanner = require(__dirname + '/use_case_1');
+var Scanner = require(__dirname + '/scanner');
 var constants = require('./constants');
 
 

@@ -58,3 +58,9 @@ will be easier to discuss in isolation
       - 2D array of "chars"
         - this might be easier for user story 4 comparisons
         - can refactor into this later
+- Implemented input file reading as a synchronous operation that reads the
+whole file into memory.  Node file utilities only offer asynchronous
+line-by-line reading.  If massive files were read by this code, it would be
+worth changing the parseFile method to be callback-based (async) rather than
+return-based.  Or perhaps there's an async/await pattern that isn't too
+inefficient.
